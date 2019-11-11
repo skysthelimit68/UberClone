@@ -1,34 +1,34 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import MapView from 'react-native-maps';
-import Location from 'expo-location';
-import Permissions from 'expo-permissions';
+import MapView from "react-native-maps";
+import * as Location from "expo-location";
+import * as Permissions from "expo-permissions";
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       region: null
-    }
+    };
     this._getLocationAsync();
   }
 
   _getLocationAsync = async () => {
     let { status } = await Permissions.askAsync(Permissions.LOCATION);
-    if (status !== 'granted') {
+    if (status !== "granted") {
       console.log("Permission not granted");
     }
-    let location = await Location.getCurrentPositionAsync({enabledHighAccuracy: true});
+    let location = await Location.getCurrentPositionAsync({});
     let region = {
       latitude: location.coords.latitude,
       longitude: location.coords.longitude,
       latitudeDelta: 0.045,
-      longitudeDelta: 0.045,
-    }
+      longitudeDelta: 0.045
+    };
     this.setState({
-      region : region
-    })
-  }
+      region: region
+    });
+  };
 
   render() {
     return (
@@ -39,7 +39,7 @@ export default class App extends React.Component {
           showsUserLocation={true}
           showsCompass={true}
           rotateEnabled={false}
-          style={{ flex: 1}}
+          style={{ flex: 1 }}
         />
       </View>
     );
@@ -49,6 +49,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fff"
   }
 });
