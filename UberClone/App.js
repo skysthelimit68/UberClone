@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from "react-native";
 import MapView from "react-native-maps";
 import * as Location from "expo-location";
 import * as Permissions from "expo-permissions";
+import { DestinationButton } from "./components/DestinationButton.js";
 
 export default class App extends React.Component {
   constructor(props) {
@@ -33,7 +34,7 @@ export default class App extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text>Uber Home</Text>
+        <DestinationButton />
         <MapView
           initialRegion={this.state.region}
           showsUserLocation={true}
